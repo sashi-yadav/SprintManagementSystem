@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta charset="UTF-8" />
+<title>Sprint Management Console</title>
+<style type="text/css">
+.myTable{
+    border-collapse: separate;
+    border-spacing: 20px;
+    width: 25%;
+}
+</style>
+</head>
+<body>
+	<ui:include src="header.xhtml"></ui:include>
+
+	<h:form>
+		<h:commandButton rendered="#{userSession.roleId.id eq 1}"
+			action="level.xhtml" value="Add Levels"></h:commandButton>
+		<h:commandButton rendered="#{userSession.roleId.id eq 1}"
+			action="sprint.xhtml" value="Create New Sprint"></h:commandButton>
+		<h:commandButton rendered="#{userSession.roleId.id eq 1}"
+			action="#{sprintBean.getAllSprints}" value="View Sprints"></h:commandButton>
+		<h:commandButton rendered="#{userSession.roleId.id eq 4}"
+			action="epic.xhtml" value="Create New Epic"></h:commandButton>
+		<h:commandButton rendered="#{userSession.roleId.id eq 2}"
+			action="task.xhtml" value="Create New Task"></h:commandButton>
+		<h:commandButton rendered="#{userSession.roleId.id eq 3}"
+			action="task.xhtml" value="Create New Bug"></h:commandButton>
+	</h:form>
+
+	<h:dataTable  styleClass="myTable" value="#{loginBean.retrieve()}" var="student">
+	<h:column>                   
+      <f:facet name="header">ID</f:facet>                
+      #{student.id}
+   </h:column>
+   <h:column>
+      <f:facet name="header">NAME</f:facet>
+      #{student.name}
+   </h:column>
+   <h:column>
+   <f:facet  name="header">EMAIL</f:facet>
+   #{student.emailId}
+   </h:column>
+	</h:dataTable>
+
+</body>
+</html>
